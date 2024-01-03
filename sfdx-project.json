@@ -3,7 +3,9 @@
     {
       "path": "force-app",
       "default": true
-    }
+    },
+    { "path": "apex-mockery" },
+    { "path": "delivery" }
   ],
   "name": "apex-mockery-hands-on",
   "namespace": "",
