@@ -12,5 +12,12 @@
   "name": "apex-mockery-hands-on",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "59.0"
+  "sourceApiVersion": "59.0",
+  "replacements": [
+    {
+      "filename": "twilio-client/main/default/namedCredentials/twilio_verify.namedCredential-meta.xml",
+      "stringToReplace": "{TWILIO_URL}",
+      "replaceWithEnv": "TWILIO_URL"
+    }
+  ]
 }
