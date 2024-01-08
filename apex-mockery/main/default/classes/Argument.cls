@@ -27,7 +27,10 @@ global class Argument {
   private Argument() {
   }
 
-  public static boolean matches(final List<Argument.Matchable> matchableArguments, final List<Object> callArguments) {
+  public static boolean matches(
+    final List<Argument.Matchable> matchableArguments,
+    final List<Object> callArguments
+  ) {
     if (matchableArguments == null || callArguments == null) {
       // If both equals null then return true
       return matchableArguments == callArguments;
@@ -54,11 +57,18 @@ global class Argument {
     return Argument.ofList(new List<Object>{ arg });
   }
 
-  global static List<Argument.Matchable> of(final Object arg1, final Object arg2) {
+  global static List<Argument.Matchable> of(
+    final Object arg1,
+    final Object arg2
+  ) {
     return Argument.ofList(new List<Object>{ arg1, arg2 });
   }
 
-  global static List<Argument.Matchable> of(final Object arg1, final Object arg2, final Object arg3) {
+  global static List<Argument.Matchable> of(
+    final Object arg1,
+    final Object arg2,
+    final Object arg3
+  ) {
     return Argument.ofList(new List<Object>{ arg1, arg2, arg3 });
   }
 
@@ -112,7 +122,9 @@ global class Argument {
     return new TypeMatchable(matchingType);
   }
 
-  global static Argument.Matchable ofType(final Schema.SObjectType callArgument) {
+  global static Argument.Matchable ofType(
+    final Schema.SObjectType callArgument
+  ) {
     return new TypeMatchable(callArgument);
   }
 
@@ -198,7 +210,8 @@ global class Argument {
       try {
         Date typeCheck = (Date) callArgument;
       } catch (System.TypeException te) {
-        String message = te.getMessage().substringAfter('Invalid conversion from runtime type ');
+        String message = te.getMessage()
+          .substringAfter('Invalid conversion from runtime type ');
         result = message.substringBefore(' to Date');
       }
       return result;

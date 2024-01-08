@@ -5,5 +5,12 @@
     "**/.sfdx": true
   },
   "editor.tabSize": 2,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "apexdox.docblock.omitDescriptionTag": false,
+  "apexPMD.rulesets": [
+    "apex-pmd.xml"
+  ],
+  "[apex]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

@@ -5,7 +5,9 @@
       "default": true
     },
     { "path": "apex-mockery" },
-    { "path": "delivery" }
+    { "path": "twilio-client" },
+    { "path": "account-app" },
+    { "path": "contact-app" }
   ],
   "name": "apex-mockery-hands-on",
   "namespace": "",

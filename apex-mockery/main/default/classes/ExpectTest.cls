@@ -66,7 +66,10 @@ private class ExpectTest {
     // Assert
     Assert.areEqual(2, fakeAsserter.callCount);
     Assert.isTrue(fakeAsserter.failed);
-    Assert.areEqual('Method method was not called with (Account:{})', fakeAsserter.errorMessage);
+    Assert.areEqual(
+      'Method method was not called with (Account:{})',
+      fakeAsserter.errorMessage
+    );
   }
 
   @isTest
@@ -77,12 +80,17 @@ private class ExpectTest {
     Expect.MethodSpyExpectable sut = Expect.that(spy, fakeAsserter);
 
     // Act
-    sut.hasBeenCalledWith(Argument.ofList(new List<Object>{ new Account(), new Opportunity() }));
+    sut.hasBeenCalledWith(
+      Argument.ofList(new List<Object>{ new Account(), new Opportunity() })
+    );
 
     // Assert
     Assert.areEqual(2, fakeAsserter.callCount);
     Assert.isTrue(fakeAsserter.failed);
-    Assert.areEqual('Method method was not called with (Account:{}, Opportunity:{})', fakeAsserter.errorMessage);
+    Assert.areEqual(
+      'Method method was not called with (Account:{}, Opportunity:{})',
+      fakeAsserter.errorMessage
+    );
   }
 
   @isTest
@@ -98,7 +106,10 @@ private class ExpectTest {
     // Assert
     Assert.areEqual(2, fakeAsserter.callCount);
     Assert.isTrue(fakeAsserter.failed);
-    Assert.areEqual('Method method was not called with (Account:{}, test)', fakeAsserter.errorMessage);
+    Assert.areEqual(
+      'Method method was not called with (Account:{}, test)',
+      fakeAsserter.errorMessage
+    );
   }
 
   @isTest
@@ -114,7 +125,10 @@ private class ExpectTest {
     // Assert
     Assert.areEqual(2, fakeAsserter.callCount);
     Assert.isTrue(fakeAsserter.failed);
-    Assert.areEqual('Method method was not called with ()', fakeAsserter.errorMessage);
+    Assert.areEqual(
+      'Method method was not called with ()',
+      fakeAsserter.errorMessage
+    );
   }
 
   @isTest
@@ -130,7 +144,10 @@ private class ExpectTest {
     // Assert
     Assert.areEqual(2, fakeAsserter.callCount);
     Assert.isTrue(fakeAsserter.failed);
-    Assert.areEqual('Method method was not called with ()', fakeAsserter.errorMessage);
+    Assert.areEqual(
+      'Method method was not called with ()',
+      fakeAsserter.errorMessage
+    );
   }
 
   @isTest
@@ -267,7 +284,10 @@ private class ExpectTest {
     // Assert
     Assert.areEqual(2, fakeAsserter.callCount);
     Assert.isTrue(fakeAsserter.failed);
-    Assert.areEqual('Method method was not last called with (null)', fakeAsserter.errorMessage);
+    Assert.areEqual(
+      'Method method was not last called with (null)',
+      fakeAsserter.errorMessage
+    );
   }
 
   @isTest
@@ -283,7 +303,10 @@ private class ExpectTest {
     // Assert
     Assert.areEqual(2, fakeAsserter.callCount);
     Assert.isTrue(fakeAsserter.failed);
-    Assert.areEqual('Method method was not last called with (Account:{})', fakeAsserter.errorMessage);
+    Assert.areEqual(
+      'Method method was not last called with (Account:{})',
+      fakeAsserter.errorMessage
+    );
   }
 
   @isTest
@@ -299,7 +322,10 @@ private class ExpectTest {
     // Assert
     Assert.areEqual(2, fakeAsserter.callCount);
     Assert.isTrue(fakeAsserter.failed);
-    Assert.areEqual('Method method was not last called with (Account:{}, test)', fakeAsserter.errorMessage);
+    Assert.areEqual(
+      'Method method was not last called with (Account:{}, test)',
+      fakeAsserter.errorMessage
+    );
   }
 
   @isTest
@@ -315,7 +341,10 @@ private class ExpectTest {
     // Assert
     Assert.areEqual(2, fakeAsserter.callCount);
     Assert.isTrue(fakeAsserter.failed);
-    Assert.areEqual('Method method was not last called with ()', fakeAsserter.errorMessage);
+    Assert.areEqual(
+      'Method method was not last called with ()',
+      fakeAsserter.errorMessage
+    );
   }
 
   @isTest

@@ -2,7 +2,6 @@
   "trailingComma": "none",
   "tabWidth": 2,
   "useTabs": false,
-  "printWidth": 120,
   "semi": true,
   "plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"],
   "overrides": [
@@ -13,6 +12,7 @@
     {
       "files": "*.{cmp,page,component}",
       "options": { "parser": "html" }
-    }
+    },
+    { "files": "*.xml", "options": { "printWidth": 180 } }
   ]
 }

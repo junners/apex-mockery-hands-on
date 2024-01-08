@@ -33,8 +33,17 @@ global class Expect {
     void hasBeenCalledWith();
     void hasBeenCalledWith(final Object param1);
     void hasBeenCalledWith(final Object param1, final Object param2);
-    void hasBeenCalledWith(final Object param1, final Object param2, final Object param3);
-    void hasBeenCalledWith(final Object param1, final Object param2, final Object param3, final Object param4);
+    void hasBeenCalledWith(
+      final Object param1,
+      final Object param2,
+      final Object param3
+    );
+    void hasBeenCalledWith(
+      final Object param1,
+      final Object param2,
+      final Object param3,
+      final Object param4
+    );
     void hasBeenCalledWith(
       final Object param1,
       final Object param2,
@@ -52,8 +61,17 @@ global class Expect {
     void hasBeenLastCalledWith();
     void hasBeenLastCalledWith(final Object param1);
     void hasBeenLastCalledWith(final Object param1, final Object param2);
-    void hasBeenLastCalledWith(final Object param1, final Object param2, final Object param3);
-    void hasBeenLastCalledWith(final Object param1, final Object param2, final Object param3, final Object param4);
+    void hasBeenLastCalledWith(
+      final Object param1,
+      final Object param2,
+      final Object param3
+    );
+    void hasBeenLastCalledWith(
+      final Object param1,
+      final Object param2,
+      final Object param3,
+      final Object param4
+    );
     void hasBeenLastCalledWith(
       final Object param1,
       final Object param2,
@@ -130,11 +148,17 @@ global class Expect {
     }
 
     public void hasNotBeenCalled() {
-      this.asserter.isTrue(this.spy.callLog.isEmpty(), buildErrorMessage(this.spy, ErrorMessageType.CALLED));
+      this.asserter.isTrue(
+        this.spy.callLog.isEmpty(),
+        buildErrorMessage(this.spy, ErrorMessageType.CALLED)
+      );
     }
 
     public void hasBeenCalled() {
-      this.asserter.isFalse(this.spy.callLog.isEmpty(), buildErrorMessage(this.spy, ErrorMessageType.NEVER_CALLED));
+      this.asserter.isFalse(
+        this.spy.callLog.isEmpty(),
+        buildErrorMessage(this.spy, ErrorMessageType.NEVER_CALLED)
+      );
     }
 
     public void hasBeenCalledTimes(final Integer count) {
@@ -150,7 +174,9 @@ global class Expect {
 
     public void hasBeenCalledWith(final Object arg) {
       this.hasBeenCalledWithArguments(
-        (arg instanceof List<Argument.Matchable>) ? (List<Argument.Matchable>) arg : Argument.of(arg)
+        (arg instanceof List<Argument.Matchable>)
+          ? (List<Argument.Matchable>) arg
+          : Argument.of(arg)
       );
     }
 
@@ -158,11 +184,20 @@ global class Expect {
       this.hasBeenCalledWithArguments(Argument.of(arg1, arg2));
     }
 
-    public void hasBeenCalledWith(final Object arg1, final Object arg2, final Object arg3) {
+    public void hasBeenCalledWith(
+      final Object arg1,
+      final Object arg2,
+      final Object arg3
+    ) {
       this.hasBeenCalledWithArguments(Argument.of(arg1, arg2, arg3));
     }
 
-    public void hasBeenCalledWith(final Object arg1, final Object arg2, final Object arg3, final Object arg4) {
+    public void hasBeenCalledWith(
+      final Object arg1,
+      final Object arg2,
+      final Object arg3,
+      final Object arg4
+    ) {
       this.hasBeenCalledWithArguments(Argument.of(arg1, arg2, arg3, arg4));
     }
 
@@ -173,10 +208,14 @@ global class Expect {
       final Object arg4,
       final Object arg5
     ) {
-      this.hasBeenCalledWithArguments(Argument.of(arg1, arg2, arg3, arg4, arg5));
+      this.hasBeenCalledWithArguments(
+        Argument.of(arg1, arg2, arg3, arg4, arg5)
+      );
     }
 
-    private void hasBeenCalledWithArguments(final List<Argument.Matchable> args) {
+    private void hasBeenCalledWithArguments(
+      final List<Argument.Matchable> args
+    ) {
       Boolean hasBeenCalledWithArguments = false;
       for (Integer i = 0; i < this.spy.callLog.size(); ++i) {
         if (Argument.matches(args, this.spy.callLog.get(i))) {
@@ -184,7 +223,10 @@ global class Expect {
           break;
         }
       }
-      this.asserter.isFalse(this.spy.callLog.isEmpty(), buildErrorMessage(this.spy, ErrorMessageType.NEVER_CALLED));
+      this.asserter.isFalse(
+        this.spy.callLog.isEmpty(),
+        buildErrorMessage(this.spy, ErrorMessageType.NEVER_CALLED)
+      );
       this.asserter.isTrue(
         hasBeenCalledWithArguments,
         buildErrorMessage(this.spy, ErrorMessageType.NOT_CALLED_WITH, args)
@@ -197,7 +239,9 @@ global class Expect {
 
     public void hasBeenLastCalledWith(final Object arg) {
       this.hasBeenLastCalledWithArguments(
-        (arg instanceof List<Argument.Matchable>) ? (List<Argument.Matchable>) arg : Argument.of(arg)
+        (arg instanceof List<Argument.Matchable>)
+          ? (List<Argument.Matchable>) arg
+          : Argument.of(arg)
       );
     }
 
@@ -205,11 +249,20 @@ global class Expect {
       this.hasBeenLastCalledWithArguments(Argument.of(arg1, arg2));
     }
 
-    public void hasBeenLastCalledWith(final Object arg1, final Object arg2, final Object arg3) {
+    public void hasBeenLastCalledWith(
+      final Object arg1,
+      final Object arg2,
+      final Object arg3
+    ) {
       this.hasBeenLastCalledWithArguments(Argument.of(arg1, arg2, arg3));
     }
 
-    public void hasBeenLastCalledWith(final Object arg1, final Object arg2, final Object arg3, final Object arg4) {
+    public void hasBeenLastCalledWith(
+      final Object arg1,
+      final Object arg2,
+      final Object arg3,
+      final Object arg4
+    ) {
       this.hasBeenLastCalledWithArguments(Argument.of(arg1, arg2, arg3, arg4));
     }
 
@@ -220,11 +273,18 @@ global class Expect {
       final Object arg4,
       final Object arg5
     ) {
-      this.hasBeenLastCalledWithArguments(Argument.of(arg1, arg2, arg3, arg4, arg5));
+      this.hasBeenLastCalledWithArguments(
+        Argument.of(arg1, arg2, arg3, arg4, arg5)
+      );
     }
 
-    private void hasBeenLastCalledWithArguments(final List<Argument.Matchable> args) {
-      this.asserter.isFalse(this.spy.callLog.isEmpty(), buildErrorMessage(this.spy, ErrorMessageType.NEVER_CALLED));
+    private void hasBeenLastCalledWithArguments(
+      final List<Argument.Matchable> args
+    ) {
+      this.asserter.isFalse(
+        this.spy.callLog.isEmpty(),
+        buildErrorMessage(this.spy, ErrorMessageType.NEVER_CALLED)
+      );
       this.asserter.isTrue(
         Argument.matches(args, this.spy.callLog.getLast()),
         buildErrorMessage(this.spy, ErrorMessageType.NOT_LAST_CALLED_WITH, args)
@@ -267,7 +327,11 @@ global class Expect {
       this.argument = argument;
     }
 
-    private String buildHeadline(MethodSpy spy, ErrorMessageType error, Object argument) {
+    private String buildHeadline(
+      MethodSpy spy,
+      ErrorMessageType error,
+      Object argument
+    ) {
       final Map<ErrorMessageType, String> messages = new Map<ErrorMessageType, String>{
         ErrorMessageType.CALLED => 'Method {0} was called',
         ErrorMessageType.NEVER_CALLED => 'Method {0} was not called',
@@ -275,7 +339,10 @@ global class Expect {
         ErrorMessageType.NOT_LAST_CALLED_WITH => 'Method {0} was not last called with {1}',
         ErrorMessageType.NOT_CALLED_TIMES => 'Method {0} was not called {1} times'
       };
-      return String.format(messages.get(error), new List<String>{ spy.methodName, argument + '' });
+      return String.format(
+        messages.get(error),
+        new List<String>{ spy.methodName, argument + '' }
+      );
     }
 
     private List<ErrorMessageRow> buildCallTraces(MethodSpy spy) {
@@ -295,7 +362,13 @@ global class Expect {
         final List<Object> args = reversedCallLogArguments[i];
         final Integer count = reversedCallLogArguments.size() - i;
         rows.add(
-          new ErrorMessageRow(String.format(template, new List<Object>{ count, spy.methodName, args + '' }), true)
+          new ErrorMessageRow(
+            String.format(
+              template,
+              new List<Object>{ count, spy.methodName, args + '' }
+            ),
+            true
+          )
         );
       }
       return rows;
@@ -319,11 +392,18 @@ global class Expect {
     }
   }
 
-  private static ErrorMessage buildErrorMessage(MethodSpy spy, ErrorMessageType error) {
+  private static ErrorMessage buildErrorMessage(
+    MethodSpy spy,
+    ErrorMessageType error
+  ) {
     return new ErrorMessageImpl(spy, error);
   }
 
-  private static ErrorMessage buildErrorMessage(MethodSpy spy, ErrorMessageType error, Object argument) {
+  private static ErrorMessage buildErrorMessage(
+    MethodSpy spy,
+    ErrorMessageType error,
+    Object argument
+  ) {
     return new ErrorMessageImpl(spy, error, argument);
   }
 }

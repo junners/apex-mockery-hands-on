@@ -21,7 +21,9 @@ public class ArgumentTest {
     Assert.isTrue(sut.matches(new List<Object>()));
     Assert.isTrue(sut.matches(new Set<Object>()));
     Assert.isTrue(sut.matches(new Map<Id, Object>()));
-    Assert.isTrue(sut.matches(new CustomType('test', 10, new Account(Name = 'test'))));
+    Assert.isTrue(
+      sut.matches(new CustomType('test', 10, new Account(Name = 'test')))
+    );
   }
 
   @isTest
@@ -46,7 +48,9 @@ public class ArgumentTest {
     Assert.isFalse(sut.matches(new List<Object>()));
     Assert.isFalse(sut.matches(new Set<Object>()));
     Assert.isFalse(sut.matches(new Map<Id, Object>()));
-    Assert.isFalse(sut.matches(new CustomType('test', 10, new Account(Name = 'test'))));
+    Assert.isFalse(
+      sut.matches(new CustomType('test', 10, new Account(Name = 'test')))
+    );
   }
 
   @isTest
@@ -71,16 +75,24 @@ public class ArgumentTest {
     Assert.isFalse(sut.matches(new List<Object>()));
     Assert.isFalse(sut.matches(new Set<Object>()));
     Assert.isFalse(sut.matches(new Map<Id, Object>()));
-    Assert.isFalse(sut.matches(new CustomType('test', 10, new Account(Name = 'test'))));
+    Assert.isFalse(
+      sut.matches(new CustomType('test', 10, new Account(Name = 'test')))
+    );
   }
 
   @isTest
   static void givenEqualsMatchable_matchesCustomType() {
     // Arrange
-    Argument.Matchable sut = Argument.equals(new CustomTypeWithEquals('test', 10, new Account(Name = 'test')));
+    Argument.Matchable sut = Argument.equals(
+      new CustomTypeWithEquals('test', 10, new Account(Name = 'test'))
+    );
 
     // Act & Assert
-    Assert.isTrue(sut.matches(new CustomTypeWithEquals('test', 10, new Account(Name = 'test'))));
+    Assert.isTrue(
+      sut.matches(
+        new CustomTypeWithEquals('test', 10, new Account(Name = 'test'))
+      )
+    );
 
     Assert.isFalse(sut.matches(null));
     Assert.isFalse(sut.matches(Date.today()));
@@ -97,16 +109,24 @@ public class ArgumentTest {
     Assert.isFalse(sut.matches(new List<Object>()));
     Assert.isFalse(sut.matches(new Set<Object>()));
     Assert.isFalse(sut.matches(new Map<Id, Object>()));
-    Assert.isFalse(sut.matches(new CustomType('test', 10, new Account(Name = 'test'))));
+    Assert.isFalse(
+      sut.matches(new CustomType('test', 10, new Account(Name = 'test')))
+    );
   }
 
   @isTest
   static void givenEqualsMatchable_matchesCollection() {
     // Arrange
-    Argument.Matchable sut = Argument.equals(new Map<String, Object>{ 'A' => new Account(), 'B' => 'test' });
+    Argument.Matchable sut = Argument.equals(
+      new Map<String, Object>{ 'A' => new Account(), 'B' => 'test' }
+    );
 
     // Act & Assert
-    Assert.isTrue(sut.matches(new Map<String, Object>{ 'A' => new Account(), 'B' => 'test' }));
+    Assert.isTrue(
+      sut.matches(
+        new Map<String, Object>{ 'A' => new Account(), 'B' => 'test' }
+      )
+    );
 
     Assert.isFalse(sut.matches(null));
     Assert.isFalse(sut.matches(Date.today()));
@@ -123,7 +143,9 @@ public class ArgumentTest {
     Assert.isFalse(sut.matches(new List<Object>()));
     Assert.isFalse(sut.matches(new Set<Object>()));
     Assert.isFalse(sut.matches(new Map<Id, Object>()));
-    Assert.isFalse(sut.matches(new CustomType('test', 10, new Account(Name = 'test'))));
+    Assert.isFalse(
+      sut.matches(new CustomType('test', 10, new Account(Name = 'test')))
+    );
   }
 
   @isTest
@@ -172,7 +194,9 @@ public class ArgumentTest {
     Assert.isFalse(sut.matches(new List<Object>()));
     Assert.isFalse(sut.matches(new Set<Object>()));
     Assert.isFalse(sut.matches(new Map<Id, Object>()));
-    Assert.isFalse(sut.matches(new CustomType('test', 10, new Account(Name = 'test'))));
+    Assert.isFalse(
+      sut.matches(new CustomType('test', 10, new Account(Name = 'test')))
+    );
   }
 
   @isTest
@@ -181,7 +205,9 @@ public class ArgumentTest {
     Argument.Matchable sut = Argument.ofType(CustomType.class);
 
     // Act & Assert
-    Assert.isTrue(sut.matches(new CustomType('test', 10, new Account(Name = 'test'))));
+    Assert.isTrue(
+      sut.matches(new CustomType('test', 10, new Account(Name = 'test')))
+    );
 
     Assert.isFalse(sut.matches(null));
     Assert.isFalse(sut.matches(Date.today()));
@@ -300,10 +326,14 @@ public class ArgumentTest {
   @isTest
   static void givenJSONMatchable_matchesCustomType() {
     // Arrange
-    Argument.Matchable sut = Argument.jsonEquals(new CustomType('test', 10, new Account(Name = 'test')));
+    Argument.Matchable sut = Argument.jsonEquals(
+      new CustomType('test', 10, new Account(Name = 'test'))
+    );
 
     // Act & Assert
-    Assert.isTrue(sut.matches(new CustomType('test', 10, new Account(Name = 'test'))));
+    Assert.isTrue(
+      sut.matches(new CustomType('test', 10, new Account(Name = 'test')))
+    );
 
     Assert.isFalse(sut.matches(null));
     Assert.isFalse(sut.matches(Date.today()));
@@ -325,10 +355,16 @@ public class ArgumentTest {
   @isTest
   static void givenJSONMatchable_matchesCollection() {
     // Arrange
-    Argument.Matchable sut = Argument.jsonEquals(new Map<String, Object>{ 'A' => new Account(), 'B' => 'test' });
+    Argument.Matchable sut = Argument.jsonEquals(
+      new Map<String, Object>{ 'A' => new Account(), 'B' => 'test' }
+    );
 
     // Act & Assert
-    Assert.isTrue(sut.matches(new Map<String, Object>{ 'A' => new Account(), 'B' => 'test' }));
+    Assert.isTrue(
+      sut.matches(
+        new Map<String, Object>{ 'A' => new Account(), 'B' => 'test' }
+      )
+    );
 
     Assert.isFalse(sut.matches(null));
     Assert.isFalse(sut.matches(Date.today()));
@@ -377,7 +413,9 @@ public class ArgumentTest {
       }
 
       CustomType other = (CustomType) o;
-      return this.name == other.name && this.size == other.size && this.sob == other.sob;
+      return this.name == other.name &&
+        this.size == other.size &&
+        this.sob == other.sob;
     }
 
     public Integer hashCode() {
@@ -471,8 +509,14 @@ public class ArgumentTest {
     List<Argument.Matchable> sut = Argument.of('test', 10, new Account());
 
     // Act
-    Boolean positive = Argument.matches(sut, new List<Object>{ 'test', 10, new Account() });
-    Boolean negative = Argument.matches(sut, new List<Object>{ 10, 'test', new Account() });
+    Boolean positive = Argument.matches(
+      sut,
+      new List<Object>{ 'test', 10, new Account() }
+    );
+    Boolean negative = Argument.matches(
+      sut,
+      new List<Object>{ 10, 'test', new Account() }
+    );
 
     // Assert
     Assert.isTrue(positive);
@@ -482,11 +526,22 @@ public class ArgumentTest {
   @isTest
   static void given4Objects_whenOfIsCalled_matchesElementsInOrder() {
     // Arrange
-    List<Argument.Matchable> sut = Argument.of('test', 10, new Account(), new List<Date>());
+    List<Argument.Matchable> sut = Argument.of(
+      'test',
+      10,
+      new Account(),
+      new List<Date>()
+    );
 
     // Act
-    Boolean positive = Argument.matches(sut, new List<Object>{ 'test', 10, new Account(), new List<Date>() });
-    Boolean negative = Argument.matches(sut, new List<Object>{ 10, 'test', new Account(), new List<Date>() });
+    Boolean positive = Argument.matches(
+      sut,
+      new List<Object>{ 'test', 10, new Account(), new List<Date>() }
+    );
+    Boolean negative = Argument.matches(
+      sut,
+      new List<Object>{ 10, 'test', new Account(), new List<Date>() }
+    );
 
     // Assert
     Assert.isTrue(positive);
@@ -496,16 +551,34 @@ public class ArgumentTest {
   @isTest
   static void given5Objects_whenOfIsCalled_matchesElementsInOrder() {
     // Arrange
-    List<Argument.Matchable> sut = Argument.of('test', 10, new Account(), new List<Date>(), new Map<Id, Set<String>>());
+    List<Argument.Matchable> sut = Argument.of(
+      'test',
+      10,
+      new Account(),
+      new List<Date>(),
+      new Map<Id, Set<String>>()
+    );
 
     // Act
     Boolean positive = Argument.matches(
       sut,
-      new List<Object>{ 'test', 10, new Account(), new List<Date>(), new Map<Id, Set<String>>() }
+      new List<Object>{
+        'test',
+        10,
+        new Account(),
+        new List<Date>(),
+        new Map<Id, Set<String>>()
+      }
     );
     Boolean negative = Argument.matches(
       sut,
-      new List<Object>{ 10, 'test', new Account(), new List<Date>(), new Map<Id, Set<String>>() }
+      new List<Object>{
+        10,
+        'test',
+        new Account(),
+        new List<Date>(),
+        new Map<Id, Set<String>>()
+      }
     );
 
     // Assert
@@ -549,7 +622,13 @@ public class ArgumentTest {
     );
     Boolean negative = Argument.matches(
       sut,
-      new List<Object>{ 10, 'test', new Account(), new List<Date>(), new Map<Id, Set<String>>() }
+      new List<Object>{
+        10,
+        'test',
+        new Account(),
+        new List<Date>(),
+        new Map<Id, Set<String>>()
+      }
     );
 
     // Assert

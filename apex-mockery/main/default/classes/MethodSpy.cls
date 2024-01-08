@@ -32,11 +32,17 @@ global class MethodSpy {
   public Object call(List<Object> args) {
     this.callLog.add(new MethodCall(args));
 
-    if (this.parameterizedMethodCalls.isEmpty() && !this.configuredGlobalReturn && !this.configuredGlobalThrow) {
+    if (
+      this.parameterizedMethodCalls.isEmpty() &&
+      !this.configuredGlobalReturn &&
+      !this.configuredGlobalThrow
+    ) {
       return null;
     }
 
-    for (ParameterizedMethodSpyCall parameterizedCall : this.parameterizedMethodCalls) {
+    for (
+      ParameterizedMethodSpyCall parameterizedCall : this.parameterizedMethodCalls
+    ) {
       if (parameterizedCall.matches(args)) {
         if (parameterizedCall.shouldThrow()) {
           throw parameterizedCall.error;
@@ -53,7 +59,10 @@ global class MethodSpy {
       throw this.exceptionToThrow;
     }
 
-    throw new ConfigurationExceptionBuilder().withMethodSpy(this).withCallArguments(args).build();
+    throw new ConfigurationExceptionBuilder()
+      .withMethodSpy(this)
+      .withCallArguments(args)
+      .build();
   }
 
   global void returns(Object value) {
@@ -74,7 +83,9 @@ global class MethodSpy {
 
   global MethodSpyCall whenCalledWith(final Object arg) {
     return this.whenCalledWithArguments(
-      (arg instanceof List<Argument.Matchable>) ? (List<Argument.Matchable>) arg : Argument.of(arg)
+      (arg instanceof List<Argument.Matchable>)
+        ? (List<Argument.Matchable>) arg
+        : Argument.of(arg)
     );
   }
 
@@ -82,11 +93,20 @@ global class MethodSpy {
     return this.whenCalledWithArguments(Argument.of(arg1, arg2));
   }
 
-  global MethodSpyCall whenCalledWith(final Object arg1, final Object arg2, final Object arg3) {
+  global MethodSpyCall whenCalledWith(
+    final Object arg1,
+    final Object arg2,
+    final Object arg3
+  ) {
     return this.whenCalledWithArguments(Argument.of(arg1, arg2, arg3));
   }
 
-  global MethodSpyCall whenCalledWith(final Object arg1, final Object arg2, final Object arg3, final Object arg4) {
+  global MethodSpyCall whenCalledWith(
+    final Object arg1,
+    final Object arg2,
+    final Object arg3,
+    final Object arg4
+  ) {
     return this.whenCalledWithArguments(Argument.of(arg1, arg2, arg3, arg4));
   }
 
@@ -97,11 +117,17 @@ global class MethodSpy {
     final Object arg4,
     final Object arg5
   ) {
-    return this.whenCalledWithArguments(Argument.of(arg1, arg2, arg3, arg4, arg5));
+    return this.whenCalledWithArguments(
+      Argument.of(arg1, arg2, arg3, arg4, arg5)
+    );
   }
 
-  private MethodSpyCall whenCalledWithArguments(final List<Argument.Matchable> args) {
-    final ParameterizedMethodSpyCall parameterizedMethodCall = new ParameterizedMethodSpyCall(args);
+  private MethodSpyCall whenCalledWithArguments(
+    final List<Argument.Matchable> args
+  ) {
+    final ParameterizedMethodSpyCall parameterizedMethodCall = new ParameterizedMethodSpyCall(
+      args
+    );
     this.parameterizedMethodCalls.add(parameterizedMethodCall);
     return parameterizedMethodCall;
   }
@@ -148,7 +174,9 @@ global class MethodSpy {
     public Object value { get; private set; }
     public Exception error { get; private set; }
 
-    public ParameterizedMethodSpyCall(final List<Argument.Matchable> argsMatchable) {
+    public ParameterizedMethodSpyCall(
+      final List<Argument.Matchable> argsMatchable
+    ) {
       this.argsMatchable = argsMatchable;
     }
 
@@ -172,7 +200,9 @@ global class MethodSpy {
       return 'whenCalledWith' +
         this.argsMatchable +
         '' +
-        (this.shouldThrow() ? '.thenThrow(' + this.error + ')' : '.thenReturn(' + this.value + ')');
+        (this.shouldThrow()
+          ? '.thenThrow(' + this.error + ')'
+          : '.thenReturn(' + this.value + ')');
     }
   }
 
@@ -185,14 +215,18 @@ global class MethodSpy {
       return this;
     }
 
-    public ConfigurationExceptionBuilder withCallArguments(final List<Object> callArguments) {
+    public ConfigurationExceptionBuilder withCallArguments(
+      final List<Object> callArguments
+    ) {
       this.callArguments = callArguments;
       return this;
     }
 
     public ConfigurationException build() {
       List<String> errorMessages = new List<String>();
-      for (ParameterizedMethodSpyCall parameterizedCall : this.spy.parameterizedMethodCalls) {
+      for (
+        ParameterizedMethodSpyCall parameterizedCall : this.spy.parameterizedMethodCalls
+      ) {
         errorMessages.add(parameterizedCall.toString());
       }
       return new ConfigurationException(

@@ -88,7 +88,10 @@ private class MethodSpyTest {
 
     // Assert
     Assert.areEqual('test', result);
-    Assert.areEqual(new List<Object>{ '3', 'args', 'test' }, sut.callLog.getLast());
+    Assert.areEqual(
+      new List<Object>{ '3', 'args', 'test' },
+      sut.callLog.getLast()
+    );
   }
 
   @IsTest
@@ -102,34 +105,49 @@ private class MethodSpyTest {
 
     // Assert
     Assert.areEqual('test', result);
-    Assert.areEqual(new List<Object>{ 'test', 'with', '4', 'args' }, sut.callLog.getLast());
+    Assert.areEqual(
+      new List<Object>{ 'test', 'with', '4', 'args' },
+      sut.callLog.getLast()
+    );
   }
 
   @IsTest
   static void givenSpyConfiguredWith5Arguments_whenCalledWithMatchingArgument_spyIsCalled() {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
-    sut.whenCalledWith('another', 'test', 'with', '5', 'args').thenReturn('test');
+    sut.whenCalledWith('another', 'test', 'with', '5', 'args')
+      .thenReturn('test');
 
     // Act
-    Object result = sut.call(new List<Object>{ 'another', 'test', 'with', '5', 'args' });
+    Object result = sut.call(
+      new List<Object>{ 'another', 'test', 'with', '5', 'args' }
+    );
 
     // Assert
     Assert.areEqual('test', result);
-    Assert.areEqual(new List<Object>{ 'another', 'test', 'with', '5', 'args' }, sut.callLog.getLast());
+    Assert.areEqual(
+      new List<Object>{ 'another', 'test', 'with', '5', 'args' },
+      sut.callLog.getLast()
+    );
   }
 
   @IsTest
   static void givenSpyConfiguredWithAMixOfObjectAndArgument_whenCalledWithAllMatching_spyIsCalled() {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
-    sut.whenCalledWith('param', new Account(Name = 'Test'), Argument.any()).thenReturn('Expected Result');
+    sut.whenCalledWith('param', new Account(Name = 'Test'), Argument.any())
+      .thenReturn('Expected Result');
 
     // Act
-    Object result = sut.call(new List<Object>{ 'param', new Account(Name = 'Test'), true });
+    Object result = sut.call(
+      new List<Object>{ 'param', new Account(Name = 'Test'), true }
+    );
 
     // Assert
-    Assert.areEqual(new List<Object>{ 'param', new Account(Name = 'Test'), true }, sut.callLog.getLast());
+    Assert.areEqual(
+      new List<Object>{ 'param', new Account(Name = 'Test'), true },
+      sut.callLog.getLast()
+    );
   }
 
   @IsTest
@@ -171,7 +189,8 @@ private class MethodSpyTest {
   static void givenSpyConfiguredWithAMixOfObjectAndArgument_whenCalledWithNonMatching_spyThrows() {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
-    sut.whenCalledWith('param', new Account(Name = 'Test')).thenReturn('Expected Result');
+    sut.whenCalledWith('param', new Account(Name = 'Test'))
+      .thenReturn('Expected Result');
 
     // Act
     try {
@@ -181,8 +200,14 @@ private class MethodSpyTest {
       Assert.fail('it shoud not reach this line');
     } catch (Exception ex) {
       Assert.isInstanceOfType(ex, MethodSpy.ConfigurationException.class);
-      Assert.areNotEqual(new List<Object>{ 'param', new Account(Name = 'Test') }, sut.callLog.getLast());
-      Assert.areEqual(new List<Object>{ new Opportunity() }, sut.callLog.getLast());
+      Assert.areNotEqual(
+        new List<Object>{ 'param', new Account(Name = 'Test') },
+        sut.callLog.getLast()
+      );
+      Assert.areEqual(
+        new List<Object>{ new Opportunity() },
+        sut.callLog.getLast()
+      );
     }
   }
 
@@ -198,12 +223,22 @@ private class MethodSpyTest {
       .thenReturn('Expected Result');
 
     // Act
-    Object result = sut.call(new List<Object>{ new List<String>{ 'test' }, new Account(Name = 'random'), true });
+    Object result = sut.call(
+      new List<Object>{
+        new List<String>{ 'test' },
+        new Account(Name = 'random'),
+        true
+      }
+    );
 
     // Assert
     Assert.areEqual('Expected Result', result);
     Assert.areEqual(
-      new List<Object>{ new List<String>{ 'test' }, new Account(Name = 'random'), true },
+      new List<Object>{
+        new List<String>{ 'test' },
+        new Account(Name = 'random'),
+        true
+      },
       sut.callLog.getLast()
     );
   }
@@ -221,7 +256,10 @@ private class MethodSpyTest {
     Assert.areEqual(new List<Object>{ new Account() }, sut.callLog.getLast());
     Object secondCallResult = sut.call(new List<Object>{ new Opportunity() });
     Assert.areEqual(new List<Object>{ new Account() }, sut.callLog.get(0));
-    Assert.areEqual(new List<Object>{ new Opportunity() }, sut.callLog.getLast());
+    Assert.areEqual(
+      new List<Object>{ new Opportunity() },
+      sut.callLog.getLast()
+    );
     Assert.areEqual('Opportunity result', secondCallResult);
   }
 
@@ -306,7 +344,8 @@ private class MethodSpyTest {
   static void givenSpyConfiguredToThenThrowException_whenCallingTheSpyWithMatchingArguments_itThrowsTheException() {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
-    sut.whenCalledWith('Expected Param').thenThrow(new IllegalArgumentException('test exception'));
+    sut.whenCalledWith('Expected Param')
+      .thenThrow(new IllegalArgumentException('test exception'));
 
     try {
       // Act
@@ -351,7 +390,8 @@ private class MethodSpyTest {
   static void givenSpyConfiguredOnceToReturnOnMatchingArguments_whenCallingTheSpy_itReturnsTheConfiguredValue() {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
-    sut.whenCalledWith('Expected First Param', true).thenReturn('Expected Result');
+    sut.whenCalledWith('Expected First Param', true)
+      .thenReturn('Expected Result');
 
     // Act
     Object result = sut.call(new List<Object>{ 'Expected First Param', true });
@@ -364,7 +404,8 @@ private class MethodSpyTest {
   static void givenSpyConfiguredOnceToReturnOnMatchingTypeMatchableAndBooleanTrue_whenCallingTheSpyWithRightType_itReturnsTheConfiguredValue() {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
-    sut.whenCalledWith(Argument.ofType(Account.getSObjectType()), true).thenReturn('Expected Result');
+    sut.whenCalledWith(Argument.ofType(Account.getSObjectType()), true)
+      .thenReturn('Expected Result');
 
     // Act
     Object result = sut.call(new List<Object>{ new Account(), true });
@@ -377,7 +418,8 @@ private class MethodSpyTest {
   static void givenSpyConfiguredOnceToReturnOnMatchingTypeMatchable_whenCallingTheSpyWithWWrong_itShouldThrowMethodSpyConfigurationException() {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
-    sut.whenCalledWith(Argument.ofType(Account.getSObjectType())).thenReturn('Expected Result');
+    sut.whenCalledWith(Argument.ofType(Account.getSObjectType()))
+      .thenReturn('Expected Result');
 
     // Act
     try {
@@ -397,12 +439,18 @@ private class MethodSpyTest {
   static void givenSpyConfiguredMultipleTimesToReturnOnMatchingArguments_whenCallingTheSpy_itReturnsTheConfiguredValue() {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
-    sut.whenCalledWith('Expected First Param 1', true).thenReturn('Expected Result 1');
-    sut.whenCalledWith('Expected First Param 2', false).thenReturn('Expected Result 2');
+    sut.whenCalledWith('Expected First Param 1', true)
+      .thenReturn('Expected Result 1');
+    sut.whenCalledWith('Expected First Param 2', false)
+      .thenReturn('Expected Result 2');
 
     // Act
-    Object result1 = sut.call(new List<Object>{ 'Expected First Param 1', true });
-    Object result2 = sut.call(new List<Object>{ 'Expected First Param 2', false });
+    Object result1 = sut.call(
+      new List<Object>{ 'Expected First Param 1', true }
+    );
+    Object result2 = sut.call(
+      new List<Object>{ 'Expected First Param 2', false }
+    );
 
     // Assert
     Assert.areEqual('Expected Result 1', result1);
@@ -426,8 +474,10 @@ private class MethodSpyTest {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
     sut.whenCalledWith('Another Param', true).thenReturn('Expected Result');
-    sut.whenCalledWith('Expected First Param', false).thenReturn('Another expected Result');
-    sut.whenCalledWith('Expected First Param', true).thenReturn('Yet another expected Result');
+    sut.whenCalledWith('Expected First Param', false)
+      .thenReturn('Another expected Result');
+    sut.whenCalledWith('Expected First Param', true)
+      .thenReturn('Yet another expected Result');
     try {
       // Act
       sut.call(new List<Object>{ 'Another Param', false });
@@ -445,7 +495,8 @@ private class MethodSpyTest {
   static void givenSpyConfiguredToReturnOnMatchingArgumentsAndThenToReturns_whenCallingTheSpyWithArguments_itReturnExpectedValueAndFallbackToDefault() {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
-    sut.whenCalledWith('Expected First Param', true).thenReturn('Expected Result');
+    sut.whenCalledWith('Expected First Param', true)
+      .thenReturn('Expected Result');
     sut.returns('Default Result');
 
     // Act
@@ -462,7 +513,8 @@ private class MethodSpyTest {
     // Arrange
     MethodSpy sut = new MethodSpy('methodName');
     sut.returns('Default Result');
-    sut.whenCalledWith('Expected First Param', true).thenReturn('Expected Result');
+    sut.whenCalledWith('Expected First Param', true)
+      .thenReturn('Expected Result');
 
     // Act
     Object result1 = sut.call(new List<Object>{ 'Expected First Param', true });
@@ -485,7 +537,11 @@ private class MethodSpyTest {
 
     // Assert
     Object expected = new Account();
-    Assert.areEqual(expected, actual, 'custom apex identical list should match');
+    Assert.areEqual(
+      expected,
+      actual,
+      'custom apex identical list should match'
+    );
   }
 
   @IsTest
@@ -518,7 +574,11 @@ private class MethodSpyTest {
 
     // Assert
     Object expected = new Account();
-    Assert.areEqual(expected, actual, 'custom apex with equals identical list should match');
+    Assert.areEqual(
+      expected,
+      actual,
+      'custom apex with equals identical list should match'
+    );
   }
 
   @IsTest
@@ -533,7 +593,11 @@ private class MethodSpyTest {
 
     // Assert
     Object expected = new Account();
-    Assert.areEqual(expected, actual, 'Not serializable custom apex identical list should match');
+    Assert.areEqual(
+      expected,
+      actual,
+      'Not serializable custom apex identical list should match'
+    );
   }
 
   @IsTest
