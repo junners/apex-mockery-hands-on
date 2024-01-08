@@ -1,6 +1,7 @@
 /**
- * @description Verification api
+ * @description Verification Concept- the idea is to have this verification generic so that the concretions can change without touching others
  * @author Jun
+ * @group twilio-api
  */
 public interface VerificationAPI {
   /**

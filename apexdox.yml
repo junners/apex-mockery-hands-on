@@ -1,0 +1,22 @@
+engine:
+  source:
+    - path: "${workspaceFolder}/twilio-client/main/default/classes"
+  targetDirectory: "${workspaceFolder}/proj-docs"
+  excludes:
+    - "*Test.cls"
+  title: Apex Mockery HandsOn Project
+  sortOrder: alpha
+  cleanDir: false
+  showTOCSnippets: true
+  scope:
+    - global
+    - public
+    - protected
+    - private
+    - webService
+    - testMethod
+  port: 9090
+docblock:
+  alignItems: false
+  spacious: true
+  omitDescriptionTag: true̦

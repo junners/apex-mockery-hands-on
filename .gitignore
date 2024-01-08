@@ -49,3 +49,6 @@ force-app/main/
 
 # mdapiOut
 mdapiOut
+
+# ApexDox - Proj Docu
+proj-docs/*

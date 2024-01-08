@@ -1,6 +1,7 @@
 /**
- * @description twilio api concretion
+ * @description Concretion of twilio api callouts. Twilio Services Are hosted on twilio-services this is designed concretion for a strangler pattern so that the VerificationAPI could be replaced anytime
  * @author Jun
+ * @group twilio-api
  */
 @NamespaceAccessible
 public class TwilioPhoneVerificationAPI implements VerificationAPI {

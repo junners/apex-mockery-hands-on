@@ -1,6 +1,7 @@
 /**
- * @description api callout
+ * @description Twilio Api Abstract that does a callout, each concretion contains details of the callout and handles responses
  * @author Jun
+ * @group twilio-api
  */
 public abstract class TwilioAPI {
   /**
