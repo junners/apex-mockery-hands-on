@@ -45,4 +45,4 @@ $RECYCLE.BIN/
 **/venv/
 
 # Remove default
-force-app
+force-app/main/

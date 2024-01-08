@@ -1,0 +1,74 @@
+<template>
+  <lightning-card icon-name="custom:29" variant="base">
+    <div slot="title">Twilio Phone Verification</div>
+    <div slot="actions">
+      <lightning-button
+        variant="base"
+        label="Verify Phone"
+        onclick={handleClick}
+      ></lightning-button>
+    </div>
+    <div slot="footer"></div>
+    <div>
+      <!-- Card Body  -->
+      <lightning-layout
+        lwc:if={isLoaded}
+        horizontal-align="center"
+        pull-to-boundary="small"
+        vertical-align="start"
+        multiple-rows
+      >
+        <lightning-layout-item size="12">
+          <lightning-layout>
+            <lightning-layout-item size="8" padding="horizontal-small">
+              <lightning-layout>
+                <lightning-input
+                  type="tel"
+                  label="Customer's Phone"
+                  name="phone1"
+                  value={phone}
+                  pattern="+1[0-9]{3}-[0-9]{3}-[0-9]{4}}"
+                  disabled
+                  read-only
+                  variant="label-inline"
+                ></lightning-input>
+              </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item size="4">
+              <lightning-layout>
+                <lightning-button
+                  variant="brand"
+                  label="Send Phone Verification Code"
+                  onclick={handlePhoneVerificationCode}
+                ></lightning-button>
+              </lightning-layout>
+            </lightning-layout-item>
+          </lightning-layout>
+        </lightning-layout-item>
+        <lightning-layout-item lwc:if={showCodeComponent} size="12">
+          <lightning-layout>
+            <lightning-layout-item size="8" padding="horizontal-small"
+              ><lightning-layout>
+                <lightning-input
+                  type="text"
+                  label="Verification Code"
+                  lwc:ref="verifCode"
+                  variant="label-inline"
+                  pattern="[0-9]{6}"
+                  message-when-pattern-mismatch="Entry must be a six digit code"
+                ></lightning-input> </lightning-layout
+            ></lightning-layout-item>
+            <lightning-layout-item size="4"
+              ><lightning-layout>
+                <lightning-button
+                  variant="brand"
+                  label="Verify Code"
+                  onclick={handleCodeSubmission}
+                ></lightning-button> </lightning-layout
+            ></lightning-layout-item>
+          </lightning-layout>
+        </lightning-layout-item>
+      </lightning-layout>
+    </div>
+  </lightning-card>
+</template>

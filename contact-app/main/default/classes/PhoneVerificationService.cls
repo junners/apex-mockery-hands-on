@@ -4,7 +4,7 @@
  */
 public with sharing class PhoneVerificationService {
   @TestVisible
-  private VerificationAPI verifier = new TwilioPhoneVerificationAPI();
+  private static VerificationAPI verifier = new TwilioPhoneVerificationAPI();
 
   /**
    * @description Starts A phone Verification where a service would send a generated code to the phone number
@@ -12,8 +12,8 @@ public with sharing class PhoneVerificationService {
    * @return  `String`
    */
   @AuraEnabled
-  public String startPhoneVerification(String phoneNumber) {
-    return this.verifier.createVerification(phoneNumber);
+  public static String startPhoneVerification(String phoneNumber) {
+    return verifier.createVerification(phoneNumber);
   }
 
   /**
@@ -23,7 +23,7 @@ public with sharing class PhoneVerificationService {
    * @return  `String`
    */
   @AuraEnabled
-  public String closePhoneVerification(String phoneNumber, String code) {
-    return this.verifier.verificationCheck(phoneNumber, code);
+  public static String closePhoneVerification(String phoneNumber, String code) {
+    return verifier.verificationCheck(phoneNumber, code);
   }
 }
