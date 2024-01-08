@@ -1,18 +1,30 @@
-# Salesforce DX Project: Next Steps
+# Apex Mockery Hands-on Project
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+This project is designed to get your hands dirty with the [apex-mockery](https://github.com/salesforce/apex-mockery) API's
 
-## How Do You Plan to Deploy Your Changes?
+# Project Structure
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+    .
+    ├── account-app             # Customizations On Account
+    ├── contact-app             # Customizations On Contact with Apex Mockery
+    ├── apex-mockery            # Apex Mockery classes
+    └── twilio-client           # Twilio Client Implementation with Apex Mockery
 
-## Configure Your Salesforce DX Project
+# Deployment
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+This repository uses [replace strings](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_string_replace.htm) so there's an additional setup required to run on your command line.
+If you're in windows; you'll have to convert everyting into mdapi then deploy
 
-## Read All About It
+1. `export SF_APPLY_REPLACEMENTS_ON_CONVERT=true`
+2. `export TWILIO_URL='your-twilio-url'`
+3. `sf project convert source --output-dir mdapiOut --source-dir account-app`
+4. `sf project convert source --output-dir mdapiOut --source-dir contact-app`
+5. `sf project convert source --output-dir mdapiOut --source-dir apex-mockery`
+6. `sf project convert source --output-dir mdapiOut --source-dir twilio-client`
+7. `sf project generate manifest --source-dir mdapiOut --output-dir mdapiOut`
+8. `sf project deploy start --source-dir mdapiOut --target-org <your-target-org>`
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+If you're using MacOs, life's easy
+
+1. `echo 'TWILIO_URL='your-twilio-url > .env`
+2. `npx dotenv -e .env sf project deploy start --source-dir . --target-org <your-target-org`
